@@ -25,6 +25,6 @@ public class exercise1 {
         }
 
         System.out.println("largest:" + largest);
-        System.out.println((System.nanoTime()-start)/1000000000 + " seconds");
+        System.out.println((System.nanoTime()-start)/1000000 + " milliseconds");
     }
 }

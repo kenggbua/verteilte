@@ -1,9 +1,6 @@
 package assignmet1;
 
-import java.util.concurrent.ConcurrentLinkedDeque;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class exercise2 implements Runnable{
     int num;
@@ -17,7 +14,7 @@ public class exercise2 implements Runnable{
     public static void main(String[] args) throws InterruptedException {
         long start = System.nanoTime();
         ExecutorService exe = Executors.newFixedThreadPool(500);
-        ConcurrentLinkedDeque<Integer> que = new ConcurrentLinkedDeque<>();
+        ConcurrentLinkedQueue<Integer> que = new ConcurrentLinkedQueue<>();
 
         for (int i = 1; i < 100000; i++) {
             que.add(i);
@@ -33,7 +30,7 @@ public class exercise2 implements Runnable{
         System.out.println("The number: " + theNumber);
         System.out.println("Number of divisors: " + largest);
 
-        System.out.println("Time: " + (System.nanoTime()-start)/1000000 + " seconds");
+        System.out.println("Time: " + (System.nanoTime()-start)/1000000 + " milliseconds");
 
 
 
@@ -41,18 +38,20 @@ public class exercise2 implements Runnable{
 
     @Override
     public void run() {
-
         int tmp = 0;
-
-        for (int i = 1; i <= num; i++) {
+        for (int i = 1; i <= num/2; i++) {
             if (num % i == 0) {
                 tmp++;
             }
+            isBigger(tmp+1,num);
 
-            if (tmp > largest){
-                largest = tmp;
-                theNumber = i;
-            }
+        }
+    }
+
+    public synchronized void isBigger(int tmp, int number){
+        if (tmp > largest){
+            largest = tmp;
+            theNumber = number;
         }
     }
 }

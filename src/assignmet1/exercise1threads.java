@@ -23,7 +23,7 @@ public class exercise1threads implements Runnable{
         System.out.println("The number: " + theNumber);
         System.out.println("Number of divisors: " + largest);
 
-        System.out.println("Time: " + (System.nanoTime()-start)/1000000000 + " seconds");
+        System.out.println("Time: " + (System.nanoTime()-start)/1000000 + " milliseconds");
 
 
     }
@@ -31,33 +31,28 @@ public class exercise1threads implements Runnable{
     @Override
     public void run() {
         int number = numbers();
-        divider(number);
-
-
+        dividers(number);
     }
 
 
-    public int divider(int range){
+    public int dividers(int end){
 
-        int temp= 1;
-        if (range == 20000) {
-            temp = range / 20000;
+        int begin;
+        if (end == 20000) {
+            begin = 1;
         } else {
-            temp = range - 20000;
+            begin = end - 20000;
         }
 
 
-        for (int i = temp; i <= range; i++) {
+        for (int i = begin; i <= end; i++) {
             int tmp = 0;
             for (int j = 1; j <= i/2; j++) {
                 if(i % j == 0){
                     tmp++;
                 }
             }
-            if(tmp > largest){
-                largest = tmp + 1;
-                theNumber = i;
-            }
+            bigger(tmp,i);
         }
 
         return largest;
@@ -66,6 +61,13 @@ public class exercise1threads implements Runnable{
     public synchronized static int numbers(){
         number = number + 20000;
         return number;
+    }
+
+    public synchronized void bigger(int tmp, int number){
+        if (tmp > largest){
+            largest = tmp;
+            theNumber = number;
+        }
     }
 
 
