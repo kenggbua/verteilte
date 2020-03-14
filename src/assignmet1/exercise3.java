@@ -4,8 +4,7 @@ import java.util.concurrent.*;
 
 public class exercise3 implements Runnable{
     int num;
-    static int largest;
-    static int theNumber;
+
     static LinkedBlockingQueue<TwoNumbers> block = new LinkedBlockingQueue<>();
 
     public exercise3(int num) {
@@ -60,6 +59,7 @@ public class exercise3 implements Runnable{
         }
 
         block.add(new TwoNumbers(tmp+1,num));
+
     }
 
 
