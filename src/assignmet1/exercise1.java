@@ -19,8 +19,6 @@ public class exercise1 {
             }
             if(tmp > largest){
                 largest = tmp + 1;
-                System.out.println("largest:" + largest);
-                System.out.println("number:" + i);
             }
         }
 

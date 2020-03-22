@@ -10,7 +10,7 @@ public class exercise1threads implements Runnable{
     public static void main(String[] args) {
         long start = System.nanoTime();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Thread t = new Thread(new exercise1threads());
             t.start();
             try {
@@ -38,10 +38,10 @@ public class exercise1threads implements Runnable{
     public int dividers(int end){
 
         int begin;
-        if (end == 20000) {
+        if (end == 10000) {
             begin = 1;
         } else {
-            begin = end - 20000;
+            begin = end - 10000;
         }
 
 
@@ -59,7 +59,7 @@ public class exercise1threads implements Runnable{
     }
 
     public synchronized static int numbers(){
-        number = number + 20000;
+        number = number + 10000;
         return number;
     }
 

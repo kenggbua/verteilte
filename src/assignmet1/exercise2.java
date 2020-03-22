@@ -13,7 +13,7 @@ public class exercise2 implements Runnable{
 
     public static void main(String[] args) throws InterruptedException {
         long start = System.nanoTime();
-        ExecutorService exe = Executors.newFixedThreadPool(500);
+        ExecutorService exe = Executors.newFixedThreadPool(100);
         ConcurrentLinkedQueue<Integer> que = new ConcurrentLinkedQueue<>();
 
         for (int i = 1; i < 100000; i++) {
