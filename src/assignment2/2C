@@ -1,0 +1,19 @@
+ExecutorService
+ - A sub-interface of Executor that adds functionality to manage the lifecycle of the tasks.
+   It also provides a submit() method whose overloaded versions can accept a Runnable as well as a Callable object.
+   Callable objects are similar to Runnable except that the task specified by a Callable object can also return a value.
+
+- The ExecutorService interface extends Executor by adding methods that help manage and control the execution of threads. It is defined in
+  java.util.concurrent package. It defines methods that execute the threads that return results, a set of threads and that determine the shutdown status.
+
+ - gives the developer the ability to control the number of generated threads and the granularity of tasks which should be executed by separate threads.
+   The best use case for ExecutorService is the processing of independent tasks, such as transactions or requests according to the scheme “one thread for
+   one task.”
+
+
+Executor
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executor.html
+provides factory methods for creating different kinds of executor services
+
+
+
