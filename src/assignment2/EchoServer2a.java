@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class EchoServer2a implements Runnable{
 
@@ -18,10 +20,11 @@ public class EchoServer2a implements Runnable{
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(portNumber);
+        ExecutorService exe = Executors.newFixedThreadPool(50);
 
         while (true){
             Socket clientSocker= serverSocket.accept();
-            new Thread(new EchoServer2a(clientSocker)).start();
+            exe.submit(new Thread(new EchoServer2a(clientSocker)));
         }
 
     }

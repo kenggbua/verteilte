@@ -6,6 +6,7 @@ public class exercise3 implements Runnable{
     int num;
 
     static LinkedBlockingQueue<TwoNumbers> block = new LinkedBlockingQueue<>();
+    static int blockLength = 0;
 
     public exercise3(int num) {
         this.num = num;
@@ -13,7 +14,7 @@ public class exercise3 implements Runnable{
 
     public static void main(String[] args) throws InterruptedException {
         long start = System.nanoTime();
-        ExecutorService exe = Executors.newFixedThreadPool(100);
+        ExecutorService exe = Executors.newFixedThreadPool(50);
         ConcurrentLinkedQueue<Integer> que = new ConcurrentLinkedQueue<>();
         TwoNumbers t1;
         TwoNumbers t2 = new TwoNumbers(1,1);
@@ -31,8 +32,10 @@ public class exercise3 implements Runnable{
         exe.awaitTermination(1, TimeUnit.DAYS);
 
 
+        blockLength = block.size();
 
-        for (int i = 1; i <= 100000; i++) {
+        for (int i = 1; i <= blockLength; i++) {
+
             t1 = block.poll();
 
             if(t1 != null && t1.largest > t2.largest){
