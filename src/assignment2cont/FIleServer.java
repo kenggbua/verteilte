@@ -11,12 +11,7 @@ public class FIleServer {
 
     public static void main(String[] args) {
 
-
-
         File file = new File("C:\\Users\\kingo\\Desktop\\test1");
-
-
-
 
         try {
             ServerSocket server = new ServerSocket(49152);

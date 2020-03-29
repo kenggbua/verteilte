@@ -26,6 +26,7 @@ public class FileServerRun implements Runnable{
 
             while ((input = in.readLine()) != null){
                 String[] input2 = input.split(" ");
+                System.out.println(Arrays.toString(input2));
 
                 if(input2.length == 1){
                     if(input2[0].equalsIgnoreCase("list")){
@@ -34,19 +35,24 @@ public class FileServerRun implements Runnable{
                     }else{
                         out.writeUTF("wrong input");
                     }
-                }
-
-                if(input2.length == 2){
+                    out.writeInt(0);
+                }else if(input2.length == 2){
+                    System.out.println(Arrays.toString(input2));
                     if(input2[0].equalsIgnoreCase("get")){
                         if(new File(dir,input2[1]).exists()){
+                            System.out.println("found file");
                             File test = new File(dir,input2[1]);
                             out.writeUTF(input2[1]);
                             out.writeInt((int) test.length());
                             out.write(Files.readAllBytes(test.toPath()));
+                        }else{
+                            out.writeUTF("error");
+                            out.writeInt(0);
                         }
                     }
                 }else{
                     out.writeUTF("error");
+                    out.writeInt(0);
                 }
 
             }

@@ -23,6 +23,7 @@ public class FileClient {
                 System.out.println(response);
                 int responseSize = in.readInt();
                 if(responseSize > 0){
+                    System.out.println(responseSize);
                     byte[] resp = new byte[responseSize];
                     in.read(resp);
                     File dest = new File("C:\\Users\\kingo\\Desktop\\test",response);
